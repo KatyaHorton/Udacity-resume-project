@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pixel Art Maker!</title>
+ 
+    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="CSS/responsive-600.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+</head>
+<body>
+  
+<div id="mainDiv">
+    
+        
+    <div id="titleDiv">
+    <h1>S. Dali's studio</h1>    
+    <p>Lab:<span id="underline"> Pixel Art Maker</span></p>
+    <p><img id="daliImg" src="images/dali.jpg"></p>
+    </div>
+    
+    
+     
+    <div id="parametreDiv">
+    
+        <h2>Size matters:</h2>
+        
+    <form id="sizePicker">
+        Vertical:
+        <input type="number" id="input_height" name="height" min="1" value="1">
+        <br id="brSpan">
+        Horizontal:
+        <input type="number" id="input_width" name="width" min="1" value="1">
+        
+        <p><button type="submit" id="submit"><img id="moustacheSubmit" src="images/moustache-small.png"></button></p>
+    </form>
+        
+    <h2>Choose the tint:</h2>
+        
+    <input type="color" id="colorPicker">
+        
+    </div>
+    
+      <div id="canvasDiv">
+    <h2>Your masterpiece goes here</h2>
+    <table id="pixel_canvas"></table>
+    </div>
+    
+    
+    </div>
+        
+   
+    
+  
+    
+    
+
+    
+    <p id="kHorton"><a href="http://katyahorton.com/">Katya Horton</a></p>
+    
+    
+    
+    
+    
+    
+    
+    
+    <script type="text/x-javascript">
+        
+        
+         
+
+function makeGrid() {
+
+    //removes the previous canvas 
+    $("#pixel_canvas").children().remove();
+  
+    var height = $("#input_height").val();
+    var width = $("#input_width").val(); 
+    var img = $("#titleDiv img");
+    var sizeText = $("h2").first();
+    
+    if ( height<21 &&  width<21) {
+ 
+    for (i = 0; i < height; i++) {
+    $("#pixel_canvas").append("<tr></tr>");
+    for (j = 0; j < $("#input_width").val(); j++) {
+      $("#pixel_canvas").children().last().append("<td></td>");}};
+    img.attr("src", "images/dali.25.jpg");
+    sizeText.text("Interesting choice of canvas..." ).css("color", "black");
+      
+  } else {
+      sizeText.text("Too big is not good! Try 20X20 or less." ).css("color", "red"); 
+      img.attr("src", "images/dali.gif");
+      
+  };
+
+  //Click Event - Fill the grid with the colour selected
+  $("#pixel_canvas td").click(function() {
+    $(this).css("background-color", $("#colorPicker").val());
+  });
+}
+
+//Click Event - Call function on submit
+$("button").click(function(evt) {
+  //Prevent Refresh after submit
+  evt.preventDefault();
+  makeGrid();
+});
+    </script>
+    
+   
+</body>
+</html>

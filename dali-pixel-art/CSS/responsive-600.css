@@ -1,0 +1,49 @@
+@media screen and (min-width: 600px) {
+
+    #mainDiv {
+       display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+        
+    #titleDiv {
+        grid-column: 1/4;
+    }
+
+
+h1 {
+
+    font-size: 35px;
+}
+
+#daliImg {
+    width:30%;
+    height:35%;
+}
+
+
+h2 {
+
+    font-size:1.4em;
+}
+
+
+
+#parametreDiv {
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr 1fr;
+}
+
+    #colorPicker {
+        margin: 0 auto;
+        width: 70%;
+    }
+    #kHorton {
+        font-size: 1.5em;
+    }
+
+#kHorton a:hover {
+    font-size: 2em;
+
+}
+
+}
