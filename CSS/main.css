@@ -1,14 +1,141 @@
-#navBar, #header, #main, .mainDivHeader, .mainDivContainer, .mainDivContent, .footerText {
+#navBar, #header, #main, .mainDivHeader, .mainDivContainer, .mainDivContent, .footerText, #footer
+{
 	border: 1px solid black;
-}
-
-
-.mainDivContent {
+	background-color: beige;
+	width: 100%;
 	
+}
+
+
+/* ------------------------- responsive min ------------------------- */
+
+
+
+/* ====================general CSS ==================== */
+
+body, #navBar, #navBarList, #wrapper {
+	margin: 0;
+	padding: 0;
+}
+
+#wrapper {
+	width: 100%;
+	min-width: 358px;
+	background-color: red;
+	display: flex;
+	flex-wrap: wrap;
+
+
+}
+
+/* ==================== navBar CSS ==================== */
+
+#menu {
+	position:fixed;
+	width: 100%;
+	height: 37px;
+	opacity: 0.8;
+	font-size: 25px;	
+}
+
+#navBar {
+	position: fixed;
+	transform: translate(0, -345px);
+	transition: transform 1s;
+	background-color: aqua;
+	
+}
+
+#navBar.open {
+		transform: translate(0, 0);
+}
+
+#navBarList {
+	height: 100%;
+	display: flex;
+	align-items: center;
+  	justify-content:space-between;
+	flex-direction: column;
+}
+
+.navBarElem {
+	font-family: sans-serif;
+	height: 55px;
+	display: flex;
+	align-items: center;
+  	justify-content:center;
+	width: 100%;
+	
+}
+
+.navBarElem a {
+	text-decoration: none;
+	color: black;
+	font-size: 30px;
+	height: 100%;
+	
+}
+
+.navBarElem a:hover {
+	font-size: 40px;
+}
+
+.navBarElem:hover *{
+	background-color: burlywood;
+	font-size: 40px;
+}
+
+.navBarElem:hover {
+	background-color: burlywood;
+
+}
+
+/* ==================== header CSS ==================== */
+
+#header {
+	min-height: 230px;
+	display: flex;
+	align-items: center;
+  	justify-content:center;
+	flex-direction: column;
+	font-size: 130%;
+}
+
+/* ==================== main CSS ==================== */
+
+#main {
+	height: 1400px;
+}
+
+.mainDivHeader {
+	padding: 0.8em;	
+	font-size: 1.9em;
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
+	
+}
+
+.mainDivContent {	
 	background-color: azure;
+	display: flex;
+	align-items:center;
+	flex-direction: column;
+	
+}
+
+.contentContainer {
+	padding: 1em;	
+	width: 100%;
+	text-align: center;
+	align-content: center;
 }
 
 
-.footerText {
-	height: 40px;
+#katyaImg, #udacityImg, img{
+	width: 65%;
 }
+
+/* ==================== footer CSS ==================== */
+
+	

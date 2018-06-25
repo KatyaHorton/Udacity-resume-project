@@ -5,7 +5,7 @@ var model = {
 //contains array with navBar objects	
 	navBarItems: [
 		{
-			name: 'about me',
+			name: 'personal',
 			href: 'http://katyahorton.com/#aboutMe'
 		},
 		{
@@ -42,33 +42,55 @@ var model = {
 //contains array with main objects
 	mainItems: [
 		{
-			name: 'about me', 
+			name: 'personal', 
 			content: [ 
 				{
-					contentLines:' * Enthusiastic Junior Front-end web developer with 1 year experience.'
+					contentLines:'Enthusiastic Junior Front-end web developer with 1 year experience.'
 				},
 				{
-					contentLines:' * Passionate about coding, technogies and design.'
+					contentLines:'Passionate about coding, technogies and design.'
 				},
 				{
-					contentLines:' * Confident comunicator and enjoys socialising.'
+					contentLines:'Confident comunicator and enjoys socialising.'
 				},
 				{
-					contentLines:' * Speaks English, Russian, French and Italian languages.'
-				}
-			]
+					contentLines:'Speaks English, Russian, French and Italian languages.'
+				}, 
+				{
+					contentLines:'Active member of London Google Campus.'
+				},
+			
+			],
+			
+			image: 'images/kHorton.jpg'
 		},
 		{
 			name: 'portfolio',
 			content: [
 				{
-					contentLines:'hi'
+					contentLines:'Project 1, arcade-clone-FEND',
+					image: 'images/pufferFish.png',
+					href: 'http://katyahorton.com/card.html' 
 				},
 				{
-					contentLines:'miau'
-				}
+					contentLines:'Project 2, memory-card-game-FEND',
+					image: 'images/kHorton.jpg',
+					href: 'http://katyahorton.com/card.html' 
+				},
+				{
+					contentLines:'Project 3, cat-clicker-premium-pro-FEND',
+					image: 'images/pufferFish.png',
+					href: 'http://katyahorton.com/card.html' 
+				}, 
+				{
+					contentLines:'Project 4, pixel-art-maker-FEND',
+					image: 'images/pufferFish.png',
+					href: 'http://katyahorton.com/card.html' 
+				} 	
+				
 			]
 		},
+		
 		{
 			name: 'skills',
 			content: [
@@ -103,17 +125,19 @@ var model = {
 				{
 					contentLines:'Udemy, The Complete Web Developer Course 2.0, in progress'
 				}
-			]
+				
+			],
+			image: 'images/udacity.jpg'
 			
 		},
 		{
 			name: 'contacts',
 			content: [
 				{
-					contentLines:'hi'
+					contentLines:'web page: katyahorton.com'
 				},
 				{
-					contentLines:'miau'
+					contentLines:'email: contact@katyahorton.com'
 				}
 			]
 		},
@@ -121,10 +145,7 @@ var model = {
 			name: 'resume',
 			content: [
 				{
-					contentLines:'hi'
-				},
-				{
-					contentLines:'miau'
+					contentLines:'resume link'
 				}
 			]
 		}
@@ -150,6 +171,14 @@ var viewNavBar = {
 	init: function() {
 		
 		this.navBarList = document.getElementById('navBarList');
+		this.navBar =  document.getElementById('navBar');
+		
+//add event when menu button is pressed navBar appears
+		this.menuButton = document.getElementById('menu');
+		this.menuButton.addEventListener('click', function() {
+			control.showNavBar();
+		});
+		
 		this.render();	
 	},
 	
@@ -163,7 +192,6 @@ var viewNavBar = {
 			
 			var navBarItem = navBarItems[i];
 			
-
 //creates new list item attribute
 			var navBarElem = document.createElement('li');
 
@@ -180,9 +208,14 @@ var viewNavBar = {
 //adds a new element to the navBArList
 			this.navBarList.appendChild(navBarElem);
 			
+//adds a class to navBarIetems 
+			navBarElem.classList.add('navBarElem');
+			
 		}
-	}
-};
+	},
+
+
+	};
 
 //------------------------------------------VIEW MAIN DIV 
 
@@ -190,14 +223,21 @@ var viewMain = {
 	
 	init: function() {
 		this.mainContainer = document.getElementById('main');
+		
+		this.mainContainer.addEventListener('click', function() {
+			control.hideNavBar();
+		})
 		this.render();
 	},
 	
 	render: function() {
 		var mainItems = control.getMainItems();
-	
+		var portfolioItems = control.getPortfolioContent();
+		
+//adds and array of main blocks to the main section
 		for (var i = 0; i < mainItems.length; i++) {
 			var mainItem = mainItems[i];
+			
 			var mainDivContainer = document.createElement('div');
 			var mainDivHeader = document.createElement('div');
 			var mainDivContent = document.createElement('div');		
@@ -208,17 +248,56 @@ var viewMain = {
 			mainDivContainer.appendChild(mainDivContent);
 			mainDivHeader.textContent = mainItem.name;
 			this.mainContainer.appendChild(mainDivContainer);
-			
 			var mainItemsContents = mainItem.content;
+
+//adds an id to each block 
+			mainDivContent.setAttribute('id', mainItem.name);	
 			
+//adds content to main section's blocks
 			for (var x = 0; x < mainItemsContents.length; x++) {
 				var mainItemsContent = mainItemsContents[x];
 				var contentContainer = document.createElement('div');
+
+
+				var portfolioMain = document.getElementById('portfolio');
+				var imageContainer3 = document.createElement('img');
+				imageContainer3.src = mainItemsContent.image;
+				mainDivContent.appendChild(imageContainer3);
+					
+				
+//ATTEMP to add content to portfolio section's blocks
 				contentContainer.textContent = mainItemsContent.contentLines;
 				mainDivContent.appendChild(contentContainer);
+				contentContainer.classList.add('contentContainer');
+				
 			}
-		}
-	}
+		};
+// I AM SURE IMAGE CAN BE OPTIMESED ========================================
+		
+//adds the image to the personal block
+				var personalMain = document.getElementById('personal');
+				
+				var imageKatya = control.getKatyaImg();
+				var imgContainer = document.createElement('img');
+				imgContainer.src = imageKatya;
+				personalMain.appendChild(imgContainer);
+				imgContainer.classList.add('contentContainer');
+				imgContainer.setAttribute('id', 'katyaImg');
+
+//adds the image to the education block
+		
+		var educationMain = document.getElementById('education');
+		var imageUdacity = control.getUdacityImg();
+		var imgContainer2 = document.createElement('img');
+		imgContainer2.src = imageUdacity;
+		educationMain.appendChild(imgContainer2);
+		imgContainer2.classList.add('contentContainer');
+		imgContainer2.setAttribute('id', 'udacityImg');
+		
+//adds the portfolio image to the portfolio block
+		
+		
+	}	
 };
 
 //------------------------------------------VIEW HEADER
@@ -238,7 +317,7 @@ var viewHeader = {
 		var headerItems = control.getHeaderItems();
 		
 		var headerText = document.createElement('h1');
-		var headerTextDown = document.createElement('h1');
+		var headerTextDown = document.createElement('h2');
 		
 		headerText.textContent = headerItems.textUp;
 		headerTextDown.textContent = headerItems.textDown;
@@ -296,9 +375,29 @@ var control = {
 		return model.mainItems;
 	}, 
 	
+	getKatyaImg: function() {
+		return model.mainItems[0].image;		
+	},
+	
+	getUdacityImg: function() {
+		return model.mainItems[3].image;		
+	},
+	
+	getPortfolioContent: function() {
+		return model.mainItems[1].content;
+	},
+	
 	getFooterItems: function() {
 		return model.footerItems;
-	}
+	}, 
+	
+	showNavBar: function() {
+		viewNavBar.navBar.classList.add('open');
+	},
+	
+	hideNavBar:  function() {
+		viewNavBar.navBar.classList.remove('open');
+	}	
 	
 	
 };
