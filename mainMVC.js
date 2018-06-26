@@ -232,11 +232,13 @@ var viewMain = {
 	
 	render: function() {
 		var mainItems = control.getMainItems();
-		var portfolioItems = control.getPortfolioContent();
+		
+		
 		
 //adds and array of main blocks to the main section
 		for (var i = 0; i < mainItems.length; i++) {
 			var mainItem = mainItems[i];
+			
 			
 			var mainDivContainer = document.createElement('div');
 			var mainDivHeader = document.createElement('div');
@@ -249,28 +251,23 @@ var viewMain = {
 			mainDivHeader.textContent = mainItem.name;
 			this.mainContainer.appendChild(mainDivContainer);
 			var mainItemsContents = mainItem.content;
+		
 
 //adds an id to each block 
 			mainDivContent.setAttribute('id', mainItem.name);	
 			
 //adds content to main section's blocks
-			for (var x = 0; x < mainItemsContents.length; x++) {
-				var mainItemsContent = mainItemsContents[x];
-				var contentContainer = document.createElement('div');
-
-
-				var portfolioMain = document.getElementById('portfolio');
-				var imageContainer3 = document.createElement('img');
-				imageContainer3.src = mainItemsContent.image;
-				mainDivContent.appendChild(imageContainer3);
-					
+			for (var x = 0; x < mainItemsContents.length; x++)  {
 				
-//ATTEMP to add content to portfolio section's blocks
-				contentContainer.textContent = mainItemsContent.contentLines;
-				mainDivContent.appendChild(contentContainer);
-				contentContainer.classList.add('contentContainer');
-				
-			}
+ 					var mainItemsContent = mainItemsContents[x];
+					var contentContainer = document.createElement('div');
+					contentContainer.textContent = mainItemsContent.contentLines;
+					mainDivContent.appendChild(contentContainer);
+					contentContainer.classList.add('contentContainer');
+						
+			};
+			
+			
 		};
 // I AM SURE IMAGE CAN BE OPTIMESED ========================================
 		
@@ -293,9 +290,6 @@ var viewMain = {
 		educationMain.appendChild(imgContainer2);
 		imgContainer2.classList.add('contentContainer');
 		imgContainer2.setAttribute('id', 'udacityImg');
-		
-//adds the portfolio image to the portfolio block
-		
 		
 	}	
 };
@@ -381,10 +375,6 @@ var control = {
 	
 	getUdacityImg: function() {
 		return model.mainItems[3].image;		
-	},
-	
-	getPortfolioContent: function() {
-		return model.mainItems[1].content;
 	},
 	
 	getFooterItems: function() {
